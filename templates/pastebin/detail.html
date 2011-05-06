@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} viewing {{ snippet.url }} {% endblock %}
+
+{% block content %}
+    
+    <h2>Viewing paste: <span>{{ snippet.url }}</span></h2>
+
+
+    <p id="paste-details">{{ snippet.lexer|title }}, {{ snippet.line_count }} lines, created {{ snippet.created|timesince }} ago</p>
+    
+    
+    <div class="highlighted">
+    {{ snippet.code_highlight|safe }}
+    </div>
+
+
+    <form id="pasteform" action="/" method="post">{% csrf_token %}
+        <ul>
+            {{ form.as_ul }}
+        </ul>
+        <input type="hidden" name="url" value="{{ snippet.url }}">
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock %}
