@@ -9,7 +9,7 @@ import string
 
 from paest.pastebin.utils import LANGUAGES, highlight
 
-LEXERS = tuple(((k,v) for k,v in LANGUAGES.items()))
+LEXERS = tuple(sorted(((k,v) for k,v in LANGUAGES.items())))
 
 
 EXPIRE_OPTIONS = (
@@ -27,10 +27,11 @@ class Snippet(models.Model):
     modified = models.DateTimeField('Modified', auto_now=True)
     code = models.TextField('Codez', help_text="This is where you put your obfuscated code. :P")
     code_highlight = models.TextField('Highlighted Code', blank=True, editable=False)
-    lexer = models.CharField('Language', max_length=255, choices=LEXERS, blank=True, null=True, help_text="Specify a language, we'll try to guess it otherwise. This works best with a shebang.")
+    lexer = models.CharField('Language', max_length=255, choices=LEXERS, default="python", blank=True, null=True, help_text="Specify a language. We'll try to guess it otherwise. (This works best with a shebang.)")
     expires_options = models.IntegerField('Expires', choices=EXPIRE_OPTIONS, blank=True, null=True, help_text="When to expire =(")
     expires_date = models.DateTimeField('Expires Date', blank=True, null=True)
     url = models.SlugField('URL', max_length=255, blank=True)
+    locked = models.BooleanField("Lock", default=0, help_text="Lock so it can't be edited.")
 
     class Meta:
         ordering = ('-created',)

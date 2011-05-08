@@ -5,4 +5,4 @@ from paest.pastebin.models import Snippet
 class SnippetForm(ModelForm):
     class Meta:
         model = Snippet
-        fields = ('code', 'lexer', 'expires_options')
+        fields = ('code', 'lexer', 'expires_options', 'locked')
