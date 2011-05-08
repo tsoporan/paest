@@ -81,9 +81,6 @@ LANGUAGES = {
     'go':               'Go',
 }
 
-def get_language(code):
-    return LANGUAGES.get(code, 'Undefined language')
-
 def highlight(code, language):
     try:
         lexer = get_lexer_by_name(language)
