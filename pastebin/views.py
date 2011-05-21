@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from paest.pastebin.models import Snippet
 from paest.pastebin.forms import SnippetForm
-
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
@@ -34,13 +34,17 @@ def paste(request, template="pastebin/paste.html"):
 
     return render(request, template, context)
 
-def detail(request, url, template="pastebin/detail.html"):
+def detail(request, url, raw=False, template="pastebin/detail.html"):
     snippet = get_object_or_404(Snippet, url__exact=url)
     
     if snippet.is_expired():
         messages.error(request, "Snippet has expired =(")
         return redirect('paste')
     
+    if raw:
+        response = HttpResponse(snippet.code, mimetype="text/plain")
+        return response
+
     form = SnippetForm(instance=snippet)
 
     lines = range(1, snippet.line_count()+1)

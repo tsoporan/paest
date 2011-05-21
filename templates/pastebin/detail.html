@@ -7,7 +7,7 @@
     <h2>Viewing paste: <span>{{ snippet.url }}</span></h2>
 
 
-    <p id="paste-details">{{ snippet.lexer|title }}, {{ snippet.line_count }} lines, created {{ snippet.created|timesince }} ago</p>
+    <p id="paste-details"><a style="float:left" href="{% url detail-raw snippet.url %}">Raw</a> {{ snippet.lexer|title }}, {{ snippet.line_count }} lines, created {{ snippet.created|timesince }} ago</p>
     
     
     <div class="highlighted">

@@ -274,6 +274,9 @@ div.highlighted {
 .syntaxtable .linenos {
     background: #000;
 }
+div.highlight {
+    overflow: auto;
+}
 
 #paste-details {
     font-size: .7em;
