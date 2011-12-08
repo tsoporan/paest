@@ -1,5 +1,5 @@
 """Pae.st Settings."""
-import sys, os
+import os
 from os.path import join as pjoin
 
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
