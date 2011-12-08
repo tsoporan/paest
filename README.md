@@ -6,16 +6,15 @@ A simple programmer-friendly pastebin made in Django.
 Install
 =======
 
-(Optional, recommended)
-1. Set up a virtualenv for paest
+(Optional to use virtualenv but recommended)
 
-2. Clone to your env
+1. Clone to your env
 
-3. pip install -r requirements.txt
+2. pip install -r requirements.txt
 
-4. python manage.py syncdb
+3. python manage.py syncdb
 
-5. python manage.py runserver
+4. python manage.py runserver
 
-6. enjoy
+5. enjoy
 
