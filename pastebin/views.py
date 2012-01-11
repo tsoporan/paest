@@ -11,6 +11,11 @@ def paste(request, template="pastebin/paste.html"):
         if "url" in request.POST:
             url = request.POST['url']
             snippet = Snippet.objects.get(url__exact=url)
+            
+            if snippet.locked:
+                messages.error(request, "Error: This snippet is locked.")
+                return redirect('detail', url=url)
+
             form = SnippetForm(request.POST, instance=snippet)
             if form.is_valid():
                 snippet = form.save()
