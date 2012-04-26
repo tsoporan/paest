@@ -1,0 +1,7 @@
+<uwsgi>
+    <pythonpath>/home/tsoporan/paest_env/lib/python2.7/site-packages</pythonpath>
+    <pythonpath>/home/tsoporan/paest_env/paest</pythonpath>
+    <app mountpoint="/">
+        <script>paest.wsgi</script>
+    </app>
+</uwsgi>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from paest.pastebin.models import Snippet
+from pastebin.models import Snippet
 import datetime
 
 class SnippetAdmin(admin.ModelAdmin):

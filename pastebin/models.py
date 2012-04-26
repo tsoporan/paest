@@ -7,7 +7,7 @@ import datetime
 from random import choice
 import string
 
-from paest.pastebin.utils import LANGUAGES, highlight
+from pastebin.utils import LANGUAGES, highlight
 
 LEXERS = tuple(sorted(((k,v) for k,v in LANGUAGES.items())))
 

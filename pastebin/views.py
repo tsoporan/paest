@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from paest.pastebin.models import Snippet
-from paest.pastebin.forms import SnippetForm
+from pastebin.models import Snippet
+from pastebin.forms import SnippetForm
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
