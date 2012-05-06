@@ -1,6 +1,6 @@
 from django.contrib import admin
 from pastebin.models import Snippet
-import timezone
+from django.utils import timezone
 
 class SnippetAdmin(admin.ModelAdmin):
     list_display = ('id', 'code_head', 'url', 'created', 'has_expired')
