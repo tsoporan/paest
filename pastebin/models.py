@@ -3,7 +3,7 @@ from django.db import models
 from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import ClassNotFound
-import datetime
+from django.utils import timezone
 from random import choice
 import string
 
@@ -38,7 +38,7 @@ class Snippet(models.Model):
 
     def is_expired(self):
         if self.expires_date:
-            return True if datetime.datetime.now() > self.expires_date else False
+            return True if timezone.now() > self.expires_date else False
 
     def line_count(self):
         return len(self.code.splitlines())
@@ -55,7 +55,7 @@ class Snippet(models.Model):
         self.code_highlight = highlight(self.code, self.lexer)
         
         if self.expires_options:
-            self.expires_date = datetime.datetime.now() + datetime.timedelta(seconds=int(self.expires_options))
+            self.expires_date = timezone.now() + timezone.timedelta(seconds=int(self.expires_options))
         #if no url is supplied, created a random unique one
         if not self.url:
             self.url = gen_url()  
