@@ -39,6 +39,7 @@ class Snippet(models.Model):
     def is_expired(self):
         if self.expires_date:
             return timezone.now() > self.expires_date
+        return False
 
     def line_count(self):
         return len(self.code.splitlines())
