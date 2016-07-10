@@ -1,20 +1,18 @@
 paest
 ======
 
-A simple programmer-friendly pastebin made in Django.
+A simple programmer-friendly pastebin
 
 Install
 =======
 
-(Optional to use virtualenv but recommended)
+0.  Create a virtualenv (tested on py2.7) and clone repo
 
-1. Clone to your env
+1. ```pip install -r requirements.txt```
 
-2. pip install -r requirements.txt
+2. ```python manage.py migrate```
 
-3. python manage.py syncdb
+3. ```python manage.py runserver```
 
-4. python manage.py runserver
-
-5. enjoy
+Enjoy!
 

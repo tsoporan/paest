@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>pae.st - {% block title %} paste your stuffs {% endblock %}</title>
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <meta name="description" content="A programmer friendly pastebin.">
@@ -30,7 +30,7 @@
 <div id="container">
 
     <header>
-        <h1><a title="pae.st" href="{% url paste %}">pae.st</a></h1>
+        <h1><a title="pae.st" href="{% url "paste" %}">pae.st</a></h1>
     </header>
 
     {% if messages %}
@@ -40,15 +40,12 @@
         {% endfor %}
     </ul>
     {% endif %}
-                
-    {% block content %} {% endblock %}    
+
+    {% block content %} {% endblock %}
 
 </div> <!-- en container -->
 <footer>
-<p>{% now "Y" %}
-    <a href="https://github.com/tsoporan/paest"> github </a>
-    made by the folks @ udderweb, join our irc: <a href="http://tinyurl.com/adullamirc">udderweb.com</a>
-</p>
+<p>{% now "Y" %} | made with &hearts; by <a href="https://github.com/tsoporan/paest">tsoporan</a></p>
 </footer>
 
 
@@ -73,6 +70,3 @@
 
 </body>
 </html>
-
-
-

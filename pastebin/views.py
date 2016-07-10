@@ -11,7 +11,7 @@ def paste(request, template="pastebin/paste.html"):
         if "url" in request.POST:
             url = request.POST['url']
             snippet = Snippet.objects.get(url__exact=url)
-            
+
             if snippet.locked:
                 messages.error(request, "Error: This snippet is locked.")
                 return redirect('detail', url=url)
@@ -20,7 +20,7 @@ def paste(request, template="pastebin/paste.html"):
             if form.is_valid():
                 snippet = form.save()
                 messages.success(request, "Snippet updated!")
-                
+
                 return redirect('detail', url=url)
             else: return redirect('detail', url=url)
 
@@ -28,11 +28,11 @@ def paste(request, template="pastebin/paste.html"):
         if form.is_valid():
             snippet = form.save()
             messages.success(request, "Snippet saved!")
-    
+
             return redirect('detail', url=snippet.url)
     else:
         form = SnippetForm(initial=request.POST)
-    
+
     context = {
         'form': form,
     }
@@ -41,27 +41,24 @@ def paste(request, template="pastebin/paste.html"):
 
 def detail(request, url, raw=False, template="pastebin/detail.html"):
     snippet = get_object_or_404(Snippet, url__exact=url)
-    
+
     if snippet.is_expired():
         messages.error(request, "Snippet has expired =(")
         return redirect('paste')
-    
+
     if raw:
-        response = HttpResponse(snippet.code, mimetype="text/plain")
+        response = HttpResponse(snippet.code, content_type="text/plain")
         return response
 
     form = SnippetForm(instance=snippet)
 
     lines = range(1, snippet.line_count()+1)
-    
+
     context = {
         'snippet': snippet,
         'lines': lines,
         'form': form,
     }
 
-    
+
     return render(request, template, context)
-    
-
-

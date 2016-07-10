@@ -11,7 +11,6 @@ from pastebin.utils import LANGUAGES, highlight
 
 LEXERS = tuple(sorted(((k,v) for k,v in LANGUAGES.items())))
 
-
 EXPIRE_OPTIONS = (
     (60, 'One Minute'), 
     (3600, 'One Hour'), 
@@ -43,7 +42,7 @@ class Snippet(models.Model):
 
     def line_count(self):
         return len(self.code.splitlines())
-    
+
     def line_split(self):
         return self.code_highlight.splitlines()
 
@@ -52,16 +51,17 @@ class Snippet(models.Model):
             lexer = guess_lexer(self.code)
             lexer = lexer.name.lower()
             self.lexer = lexer
-        
+
         self.code_highlight = highlight(self.code, self.lexer)
-        
+
         if self.expires_options:
             self.expires_date = timezone.now() + timezone.timedelta(seconds=int(self.expires_options))
+
         #if no url is supplied, created a random unique one
         if not self.url:
-            self.url = gen_url()  
+            self.url = gen_url()
         super(Snippet, self).save(*args, **kwargs)
-   
+
     def __unicode__(self):
         return self.url
 
