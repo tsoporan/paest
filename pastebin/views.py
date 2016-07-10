@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-def paste(request, template="pastebin/paste.html"):
+def paste(request, template="paste.html"):
 
     if request.method == 'POST' and request.POST:
         if "url" in request.POST:
@@ -39,7 +39,7 @@ def paste(request, template="pastebin/paste.html"):
 
     return render(request, template, context)
 
-def detail(request, url, raw=False, template="pastebin/detail.html"):
+def detail(request, url, raw=False, template="detail.html"):
     snippet = get_object_or_404(Snippet, url__exact=url)
 
     if snippet.is_expired():
