@@ -4,10 +4,14 @@
 <p id="intro"> It's quite bland isn't it? A simple pastebin targetted at hardcore programmers, or something like that.</p>
 
 <form id="pasteform" action="" method="post">{% csrf_token %}
-    <ul>
-    {{ form.as_ul }}
-    </ul>
-    <input type="submit" value="Save">
 
+    {% for field in form %}
+        <div class="field {{ field.name }}">
+            {{ field.label }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Paste">
 <form>
 {% endblock %}
