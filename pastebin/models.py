@@ -12,10 +12,10 @@ from pastebin.utils import LANGUAGES, highlight
 LEXERS = tuple(sorted(((k,v) for k,v in LANGUAGES.items())))
 
 EXPIRE_OPTIONS = (
-    (60, 'One Minute'), 
-    (3600, 'One Hour'), 
-    (3600*24*7, 'One Week'), 
-    (3600*24*30, 'One Month'), 
+    (60, 'One Minute'),
+    (3600, 'One Hour'),
+    (3600*24*7, 'One Week'),
+    (3600*24*30, 'One Month'),
 )
 
 def gen_url(length=4, chars=string.letters+string.digits):
